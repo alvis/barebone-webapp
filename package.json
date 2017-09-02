@@ -1,0 +1,76 @@
+{
+  "name": "barebone-webapp",
+  "version": "1.0.0",
+  "description": "Barebone for a modern app with Gatsby, React, PostCSS and Typescript",
+  "scripts": {
+    "build": "tsc && ts-node node_modules/.bin/gatsby build",
+    "clean": "rm -rf .cache factory public",
+    "lint": "tslint --project tsconfig.json --config tslint.json --type-check",
+    "start": "ts-node node_modules/.bin/gatsby develop",
+    "test": "jest"
+  },
+  "jest": {
+    "bail": true,
+    "resetModules": true,
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/specs/**/*.spec.ts"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "json"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvis/barebone-webapp.git"
+  },
+  "keywords": [
+    "gatsby",
+    "boilerplate",
+    "typescript"
+  ],
+  "author": "Alvis HT Tang <alvis@hilbert.space>",
+  "contributors": [
+    "Alvis HT Tang <alvis@hilbert.space>"
+  ],
+  "maintainers": [
+    "Alvis HT Tang <alvis@hilbert.space>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alvis/barebone-webapp/issues"
+  },
+  "homepage": "https://github.com/alvis/barebone-webap#readme",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-helmet": "^5.1.0",
+    "react-scroll": "^1.7.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^21.1.0",
+    "@types/node": "^8.5.0",
+    "@types/react": "^16.2.0",
+    "@types/react-helmet": "^5.0.0",
+    "@types/react-scroll": "^1.5.0",
+    "babel-plugin-module-resolver": "^3.1.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-constant-elements": "^6.23.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "gatsby": "^1.9.0",
+    "gatsby-link": "^1.6.0",
+    "gatsby-source-filesystem": "^1.5.0",
+    "gatsby-transformer-yaml": "^1.5.0",
+    "jest": "^21.1.0",
+    "prettier": "^1.9.0",
+    "ts-jest": "^21.2.0",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0",
+    "tslint-config-prettier": "^1.5.0",
+    "typescript": "^2.8.0"
+  }
+}

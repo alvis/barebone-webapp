@@ -1,0 +1,20 @@
+{
+  "plugins": [
+    ["module-resolver", {
+      "alias": {
+        "#assets": "./assets",
+        "#components": "./src/components",
+        "#definitions": "./src/definitions",
+        "#layouts": "./src/layouts",
+        "#pages": "./src/pages",
+        "#style": "./src/style",
+        "#utilities": "./src/utilities"
+      }
+    }],
+    "transform-es2015-modules-commonjs",
+    "transform-object-rest-spread",
+    "transform-react-constant-elements",
+    "transform-react-remove-prop-types",
+    "transform-regenerator"
+  ]
+}
