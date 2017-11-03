@@ -16,6 +16,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
+import '../semantic/dist/semantic.css';
+
 interface LayoutProps {
   children(): JSX.Element;
 }
