@@ -47,12 +47,12 @@ export default class Index extends React.PureComponent<GatsbyProps<GraphQL>> {
 
   public render(): JSX.Element {
     return (
-      <>
+      <React.StrictMode>
         {this.Meta}
         <p>Hello World</p>
         <Account />
         <App />
-      </>
+      </React.StrictMode>
     );
   }
 }
