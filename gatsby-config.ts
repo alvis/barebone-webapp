@@ -38,3 +38,8 @@ export const plugins: Config.Plugins = [
   `gatsby-plugin-sitemap`, // generate a sitemap automatically
   `gatsby-plugin-typescript` // enable typescript
 ];
+
+export const siteMetadata = {
+  title: `Hello World`,
+  siteUrl: `https://hello.world`
+};

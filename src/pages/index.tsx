@@ -14,13 +14,38 @@
  */
 
 import React from 'react';
+import Helmet from 'react-helmet';
 
 import GatsbyProps from '#definitions/gatsby/props';
 
-export default class Index extends React.PureComponent<GatsbyProps> {
+export interface GraphQL {
+  site: {
+    siteMetadata: {
+      title: string;
+    };
+  };
+}
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;
+
+export default class Index extends React.PureComponent<GatsbyProps<GraphQL>> {
+  // define a const element here to avoid the expensive creation in the rendering procedure
+  private Meta: JSX.Element = (
+    <Helmet title={this.props.data.site.siteMetadata.title} />
+  );
+
   public render(): JSX.Element {
     return (
       <>
+        {this.Meta}
         <p>Hello World</p>
       </>
     );
