@@ -17,9 +17,18 @@
  * -------------------------------------------------------------------------
  */
 
-// import Browser from '#definitions/gatsby/browser';
+import 'babel-polyfill';
 
-// export const onClientEntry: Browser.onClientEntry = (): void => {};
+import Browser from '#definitions/gatsby/browser';
+
+/*
+ * onClientEntry is required for the polyfill to be loaded
+ * see https://github.com/gatsbyjs/gatsby/issues/2177
+ */
+export const onClientEntry: Browser.onClientEntry = (): void => {
+  // no need to do anything here, but if you don't
+  // export something, the import won't work.
+};
 
 // export const onInitialClientRender: Browser.onInitialClientRender = (): void => {};
 
