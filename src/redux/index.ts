@@ -13,6 +13,8 @@
  * -------------------------------------------------------------------------
  */
 
+import * as account from './account';
+
 /* ----- Action ----- */
 
 import * as actions from './actions';
@@ -23,6 +25,7 @@ import { ActionsUnion } from 'typesafe-actions';
 
 type AppAction = NonNullable<
   | ActionsUnion<typeof actions>
+  | ActionsUnion<typeof account.actions>
 >;
 type ReactRouterAction = RouterAction | LocationChangeAction;
 
@@ -39,6 +42,7 @@ interface RouterHistoryState {
 type RouterState = GenericRouterState & RouterHistoryState;
 
 export interface State {
+  account: account.State;
   router: RouterState;
 }
 
@@ -80,6 +84,7 @@ const historyReducer: Reducer<RouterState> = (
 };
 
 export const rootReducer = combineReducers<State, Action>({
+  account: account.reducers,
   router: reduceReducer<RouterState>(
     routerReducer as Reducer<RouterState>,
     historyReducer
@@ -114,6 +119,7 @@ export default function prepareStore(
 ): PreparedStore {
   // combine other middlewares
   const combinedEnhancer = compose<StoreEnhancerStoreCreator>(
+    account.enhancer(),
     ...enhancers
   );
 
