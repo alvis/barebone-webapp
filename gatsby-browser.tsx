@@ -18,8 +18,21 @@
  */
 
 import 'babel-polyfill';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
+import { applyMiddleware } from 'redux';
+import { PersistGate } from 'redux-persist/integration/react';
+
+import createStore from '#redux';
 
 import Browser from '#definitions/gatsby/browser';
+
+interface ReduxWindow extends Window {
+  __REDUX_DEVTOOLS_EXTENSION__?: any;
+}
+
+declare var window: ReduxWindow;
 
 /*
  * onClientEntry is required for the polyfill to be loaded
@@ -46,7 +59,30 @@ export const onClientEntry: Browser.onClientEntry = (): void => {
 
 // export const replaceHistory: Browser.replaceHistory = (): History => {};
 
-// export const replaceRouterComponent: Browser.replaceRouterComponent = (parameters): React.ReactNode => {};
+export const replaceRouterComponent: Browser.replaceRouterComponent = ({
+  history
+}): React.ReactNode => {
+  const middlewares = [applyMiddleware(routerMiddleware(history))];
+
+  // add a middleware for the Redux DevTool Extension
+  if (window.__REDUX_DEVTOOLS_EXTENSION__) {
+    middlewares.push(window.__REDUX_DEVTOOLS_EXTENSION__());
+  }
+
+  const { store, persistor } = createStore(...middlewares);
+
+  const ConnectedRouterWrapper: React.ReactNode = ({
+    children
+  }): React.ReactNode => (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ConnectedRouter history={history}>{children}</ConnectedRouter>
+      </PersistGate>
+    </Provider>
+  );
+
+  return ConnectedRouterWrapper;
+};
 
 // export const shouldUpdateScroll: Browser.shouldUpdateScroll = (parameters): void => {};
 
