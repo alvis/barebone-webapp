@@ -31,6 +31,8 @@
     ],
     "baseUrl": "./src",
     "paths": {
+      "#auth": ["auth"],
+      "#auth/*": ["auth/*"],
       "#assets/*": ["../assets/*"],
       "#components/*": ["components/*"],
       "#definitions": ["definitions"],
