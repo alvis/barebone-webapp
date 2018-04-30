@@ -16,6 +16,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
+import Account from '#components/account';
 import App from '../app';
 
 import GatsbyProps from '#definitions/gatsby/props';
@@ -49,6 +50,7 @@ export default class Index extends React.PureComponent<GatsbyProps<GraphQL>> {
       <>
         {this.Meta}
         <p>Hello World</p>
+        <Account />
         <App />
       </>
     );
