@@ -102,6 +102,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import { Persistor } from 'redux-persist';
+import createEncryptor from 'redux-persist-transform-encrypt';
 
 interface PreparedStore {
   store: Store<State>;
@@ -120,6 +121,11 @@ export default function prepareStore(
   const persistConfig = {
     key: 'root',
     storage,
+    transforms: [
+      createEncryptor({
+        secretKey: JSON.stringify(process.env)
+      })
+    ]
   };
   const persistedReducer = persistReducer(persistConfig, rootReducer);
 
